@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="./styles/global.css" />
+<link rel="stylesheet" type="text/css" href="./styles/header.css" />
+<link rel="stylesheet" type="text/css" href="./styles/navbar.css" />
+<link rel="stylesheet" type="text/css" href="./styles/showcase.css" />
+<link rel="stylesheet" type="text/css" href="./styles/footer.css" />
+
+<title>Li-Heng Liang | Projects</title>
+
+</head>
+
+
+<body>
+<div id="docbase">
+
+<div id="header">
+<a href="./index.html">
+<img id="logo" alt="[Logo Image]" src="./images/lstamp_opt.jpg" />
+</a>
+<h1><a href="./index.html">Li-Heng Liang</a></h1>
+</div>
+
+<ul id="navbar">
+<li class="navbar"><a class="navbar" href="./bio.html">Biography</a></li>
+<li class="navbar"><a class="navbar" href="./resume.html">Resume</a></li>
+<li class="navbar"><a class="curnav" href="./project.html">Projects</a></li>
+<li class="navbar"><a class="navbar" href="./artwork.html">Artwork</a></li>
+<li class="navbar"><a class="navbar" href="./contact.html">Contact</a></li>
+</ul>
+
+<div class="showcase">
+<img alt="[Raytracer Sample Image]" src="./images/raytraced_spheres_opt.jpg" />
+<p class="showcase">Raytracer Program Output with Zero/Five Bounce Reflection | C++ with SDL and libpng, April 2011</p>
+</div>
+
+<h2>Welcome to the Tech World</h2>
+
+<p>I received my bachelor's degree in electrical engineering from National Taiwan University. It
+was the school which gave me a solid training in math, physics, knowledge of computer, and most
+importantly, problem solving skills every engineer should have. After I came to Carnegie Mellon,
+I had the opportunity to participate in various kinds of projects, mainly as the role of programmer.
+Programming collaboratively with other engineers was one of the most valuable lessons I learned
+during my graduate study.<br />
+<br />
+In addition to teamwork practice, I also took several classes from Carnegie Mellon's School of
+Computer Science. The area where I have the most interest in is computer graphics. The image above
+is an output of one of my assignment project. It is an image rendered by a raytracer written
+in C++ with SDL and libpng libraries.<br />
+</p>
+
+<h2>Asymmetrical Cooperative Gaming</h2>
+
+<p>
+[ An  
+<a class="inline" href="http://www.gamasutra.com/view/fea
+ture/6249/the_genre_blender_experiments_in_.php?utm_source=feedburner&amp;utm_medium=feed&amp;utm_
+campaign=Feed%3A+GamasutraFeatureArticles+%28Gamasutra+Feature+Articles%29">
+article
+</a>
+about this project was featured by Gamasutra.com on January 4th, 2011 ]<br />
+<br />
+This is a semester-long project at Carnegie Mellon University's Entertainment Technology Center,
+pitched by six graduate students. Our goal was to allow people who enjoy playing different types
+of games can play one same game together, having everyone interact with each other with their
+own game type of choice.<br />
+<br />
+We picked first-person shooting, racing, and 2D puzzle game as our target genres becuase we believed
+this particular set covers a wide enough range of gamer types and was sufficient to prove our point &#8211;
+that a game like this can actually be done and be fun.<br />
+<br />
+The rule of the game was setup to be team-versus-team, point-based competitive. Whichever team earns
+the certain amount of points more than the other team wins the round. Reason for team-versus-team was
+because we believed it has more dynamics than team-versus-ai, which is good for an experiment.
+The reason for making it point-based competitive is because point system is the one thing that appears
+in all game types.<br />
+</p>
+<br />
+ 
+<div class="showcase">
+<img alt="[ACG Screenshot Image]" src="./images/acg_screenshots_opt.jpg" />
+<p class="showcase">
+Screenshots From All Three Genres in Asymmetrical Cooperative Gaming. Visuals by artists in our team.<br />
+[ from left to right: First-person Shooting, 2D Puzzle Gaming, Racing ]<br />
+</p>
+</div>
+
+<br />
+<p>
+One biggest challenge of making this game lay in the balancing between different genres. Our
+goal was to make players able to play with whoever people they want to play with ( as
+long as they like one of the three genres we provided ) so we had to give all players a 
+freedom to choose whatever genre they want to play. In other words, we needed to make sure a team
+with three racers was equally powerful than a team composited of all three different genres, as well as a team
+with pure puzzle players or pure shooters.<br />
+<br />
+Another issue we ran into was information passing. Players of different game genres play games
+differently, and they care about different issues or expect different things to happen in their
+game world. Making sure every players get the same experience they expect to have when they play their genre of
+choice, while giving them an additional sense of interaction with other types of players happened to be
+a really difficult task. We managed to deal with this part largely by improving on-screen interface
+notifications and environmental hints iteratively, along with user testing.<br />
+<br />
+We built the game with Unity3D game engine. I was one of the three programmers in the team, and was mostly
+in charge of the 2D aspect of the game. In particular, I implemented our puzzle game representitive,
+a spin-off version of Bejeweled.<br />
+</p>
+
+<div class="rightcase">
+<img alt="[Cross-Platform Graphics Program Image]" src="./images/mesh_platforms_opt.jpg" />
+<p class="showcase">
+Cross-platform Mesh Subdivision Program<br />
+C++ and OpenGL with SDL, Feb. 2011
+</p>
+</div>
+
+<h2>Graphics Programming</h2>
+
+<p>I found it very enjoyable programming graphics applications when I took the Computer Graphics
+class provided by Carnegie Mellon. During the class we implemented various topics such as mesh
+subdivion, shader programming and raytracer. All of the projects were done in C++, with OpenGL
+as graphics API and SDL as windowing/interaction library.<br />
+<br />
+Because OpenGL and SDL are both cross-platform libraries, and also because the school required
+us to submit our programs to Linux machine, while my desktop computer runs Windows and I own an
+macbook, I had the chance to practice porting the same graphics program onto three different 
+operating systems.<br />
+<br />
+Images to the right are screenshots of a same program, running on three different platforms.
+It was taken from an assignment which we practiced implementing an algorithm to subdivide triangle
+mesh - namely, the Loop Subdivision Algorithm. Having an effecient data structure for the mesh
+to be subdivide was an crucial part of this assignment, and my implementation of using the
+winged-edge structure performed comparably fast during execution.<br />
+<br />
+In addition to Computer Graphics, I also took the Technical Animation class at Carnegie Mellon.
+The class talked about various topics related to computer animation, ranging from motion capture
+to physically based simulation. For class projects we implemented an inverse kinematic control for
+a given humanoid skeleton, as well as a cloth simulation with spring-damping model. Everything
+were also done in C++ and OpenGL.<br />
+<br />
+As I mentioned in the front page of this website, one of the things I would really want to be
+able to achieve is that one day, I can design my own character, put him into a computer program I
+wrote, and have him animated as if it were alive and will entertain whoever sees it. Having
+taken the fundamental classes at Carnegie Mellon was really just a start, but also a rather solid
+start that I appreciate.<br />
+</p>
+
+<h2>Remote Game Controller Using Oracle's SunSPOT</h2>
+
+<p>
+One of the semesters at Carnegie Mellon I had the chance to be introduced to an interesting device called the
+"SunSPOT", which was originally developed by Sun Microsystem. The name SunSPOT stands for "Sun Small Programmable
+Object Technology", and it allows software programmers to program the piece of hardware with Java language, almost
+the same way we program Java applications on computers.<br />
+<br />
+</p>
+
+<div class="rightcase">
+<img alt="[SunSPOT Controller In Action Picture]" src="./images/spot_controller_opt.jpg" />
+<p class="showcase">
+Playing Need For Speed: Hot Pursuit using SunSPOT<br />
+The player's lefthand was controlling pedal/break,<br />
+and righthand tilting left/right for steering.
+</p>
+</div>
+
+<p>
+One aspect of SunSPOT that I found particularlly interesting is that it can easily be held in hand, and transmit
+its current acceleration values in space to a remote computer in real-time. With this, and the ability of Java itself to
+trigger keyboard/mouse events programmatically, I put together an interface that allows people to use SunSPOT as
+a remote controller and play existing computer games that might be more fun playing with hand motions, rather than
+traditional keyboard and mouse.<br />
+<br />
+This interface system was completely built in Java, so it can run on multiple computer platforms with very little
+modification to the source code, as long as the computer has Java environment properly setup. This project not
+only gave me the experience to play a little bit with human-computer interaction methods, but also helped me understand some
+of the strengh that Java language provides to the programmers.
+</p>
+
+
+<div id="footer">
+<p class="footer">
+Last Update: April 27th, 2011<br />
+This website was built with plain html/css. Recommended browsing with latest versions of Mozilla Firefox, Google Chrome or Apple Safari.<br />
+All displayed material, including text, images and videos, unless otherwise stated, were solely created by me.<br />
+Copyright 2011 Li-Heng Liang<br />
+</p>
+</div>
+
+</div>
+</body>
+
+
+</html>

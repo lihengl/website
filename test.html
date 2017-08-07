@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="styles/global.css" />
+<link rel="stylesheet" type="text/css" href="styles/header.css" />
+<link rel="stylesheet" type="text/css" href="styles/navbar.css" />
+<link rel="stylesheet" type="text/css" href="styles/showcase.css" />
+<link rel="stylesheet" type="text/css" href="styles/footer.css" />
+
+<script type="text/javascript">
+function draw()
+{
+    //get a reference to the canvas
+    var ctx = $('#canvas')[0].getContext("2d");
+    //draw a circle
+    ctx.beginPath();
+    ctx.arc(75, 75, 10, 0, Math.PI*2, true); 
+    ctx.closePath();
+    ctx.fill();
+}
+</script>
+
+<title>Li-Heng Liang | Personal Website</title>
+
+</head>
+
+
+<body>
+<div id="docbase">
+
+<canvas id="canvas" width="300" height="300"></canvas>
+<button type="button" onclick="draw()">Draw</button>
+
+<div id="footer">
+<p class="footer">
+Last Update: April 22nd, 2011<br />
+This website was built with plain html/css. Recommended browsing with latest versions of Mozilla Firefox, Google Chrome or Apple Safari.<br />
+All displayed material, including text, images and videos, unless otherwise
+stated, were solely created by me.<br />
+Copyright 2011 Li-Heng Liang<br />
+</p>
+</div>
+
+</div>
+</body>
+
+
+</html>

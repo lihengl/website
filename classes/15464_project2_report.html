@@ -1,0 +1,254 @@
+<html>
+
+<head>
+
+   <title>[lihengl] 15-464 Technical Animation 2011 Assignment 2 Report</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000" lang="EN-US" style="tab-interval:.5in">
+
+<!--Header-->
+
+<center>
+
+<b><font size=+2>Assignment 2:  Inverse Kinematics</font></b><br>
+
+Due Date: Monday, February 28, 2011, 11:59pm<br>
+
+Submission Date:  Saturday, March 12, 2011<br><br>
+
+**12 DAYS LATE**<br><br>
+
+Student Name: Li-Heng Liang<br>
+
+Andrew Id: lihengl
+
+</center>
+
+
+<!--Overview-->
+
+<hr>
+
+<b><font size=+1>Overview:</font></b>
+
+<p>
+
+In this assignment we were asked to implement two common methods for achieving
+the inverse kinematics mechanism: Cyclic Coordinate Descent (CCD) and Jacobian.
+An OpenGL C++ code base which shows an animated humanoid skeleton in a window
+was provided, as well as several handouts describing the two methods. 
+
+</p>
+
+<p>
+
+My goal for this assignment is to implement the two methods, identify some
+possibe differnces between their behaviors, and provide some interactivity
+related to the IK chain. For the outcome, I have implemented the CCD mothod, 
+but sadly not the Jacobian. Interactivity is provided to the point where 
+users can switch between four predefined IK chains and change the position
+of their end effector targets using solely keyboard inputs. The original
+interaction behavior of the applcation remains unchanged. 
+
+</p>
+<br>
+
+
+<!--Demo Video-->
+
+<hr>
+
+<b><font size=+1>Demo Video:</font></b>
+
+<p>
+
+Here is the video demonstration of the IK system, implemented on top of the given
+motion browser application:
+
+</p>
+
+<iframe src="http://player.vimeo.com/video/20969772?portrait=0" width="440" height="341" frameborder="0"></iframe>
+
+<p>
+
+The video shows possible interaction using keyboard and mouse, as well as the
+IK mechanism of CCD method. Jacobian method is not demonstrated in this video
+since it is not implemented at this point. 
+
+</p>
+
+<p><br></p>
+
+<hr>
+
+<!--Implementation-->
+
+<b><font size=+1>Implementation:</font></b>
+
+<p>
+
+The program is an extension of the given motion browser code base, which loads in 
+a predefined skeleton and several motion data that comes with it. It was mostly
+implemented on my personal machine under Mac OS X, but it is tested to compile and
+run on CMU GHC cluster machines.
+
+</p>
+
+<p><b>1. Compile (under linux)</b></p>
+
+<p>
+
+To compile the program, under the working directory (which is "assign2/ik_viewer/" 
+for this assignmnet) just run the jam file. Once succefully compiled, an executable
+called "browser"  will then be created under the "dist" directory.
+
+</p>
+
+<p><b>2. Run:</b></p>
+
+<p>
+
+Simply execute the "browser" file within the "dist" directory. A window with
+a static skeleton will show up on the screen. You should see four lines connecting
+the bones of both arms and legs, and four wireframed cubes and the end of those. 
+The lines represent the connection of an IK chain, and the center of the cubes 
+indicate where the targets of the chains are.<br>
+Additional keyboard functions are listed below:
+
+</p>
+
+<ul>
+
+	<li><b>Left/Right Key:</b><br>
+        Cycle through the four predefined IK chains. Currently selected chain is highlighted yellow.<br><br>
+
+	<li><b>I Key:</b><br>
+	Toggle between CCD and Jacobian modes.<br><br>
+
+	<li><b>Q/W Key:</b><br>
+	Decrease/Increase the x-coordinate value of the target of currently selected IK chain.<br><br>
+	
+	<li><b>A/S Key:</b><br>
+	Decrease/Increase the y-coordinate value of the target of currently selected IK chain.<br><br>
+	
+	<li><b>Z/X Key:</b><br>
+	Decrease/Increase the z-coordinate value of the target of currently selected IK chain.<br><br>
+	
+</ul>
+
+<p>
+
+The above input methods, while provied interaction I intended to make the application have, and
+also do the job of visualizing IK chains, are not the original idea I had. What I was trying to
+achieve in the first place was to allow the user to drag the faces of the cubes, which represents
+target for that IK chain, and move them along their corresponding xyz axis, much like the manipulators
+in Maya. However, I did not have time to look into how to do the OpenGL object picking, and had
+to just use easier but quite unintuitive keyboard approach as it is right now.
+
+</p>
+
+<p><b>3. Source Code:</b></p>
+
+<p>
+
+For this implementation, while trying to alter the starter code as little as possible, still 
+involves some modification to the provided source code. Additional source files were also
+created, and they all reside in a newly created directory named "Ik". Comments were placed
+at each point where I put new lines of code and whenever I did some specific assumptions.<br>
+Below is a list of things I have done related to the code:
+
+<ul>
+
+	<li><b>Ik/IkChain.cpp & Ik/IkChain.hpp</b><br>
+        I created the "IkChain" object to visualize and store information needed to form an IK
+        chain. It takes two NAMES of bones and forms an IK chain, making the bone with the first
+        name the root of the chain and the bone with the second name the end. I made certain
+        contrains here deciding what makes a valid IK chain, namely: 1) Chains can only be formed
+        in the direction from the root of the skeleton to the end bones. and 2. The number of bones
+        in a single chain is capped by 4. The first contraint is to avoid chains that do not make
+        sense. The second contrain is mainly for limiting the complexity of finding the solution 
+        for the chain.<br><br> 
+
+	<li><b>Ik/IkSolver.cpp & Ik/IkSolver.hpp</b><br>
+        This is where the actual implementation for CCD and Jacobian methods go. One of the two
+        solver function is called every update cycle, taking one of the valid IK chain as argument. 
+        NOTE: when looking into the Jacobian part in IkSOlver.cpp, you would see a TODO there. This
+        means that the Jacobian method is not implemented yet.<br><br>
+
+        <li><b>Library/Library.cpp & Library/Library.hpp</b><br>
+        As suggested by Matt, I added the set_angles() method into class Motion.<br><br>
+
+        <li><b>Browser/BrowserMode.cpp & Browser/BrowserMode.hpp</b><br>
+        Added new key input event handlers for the above mentioned input methods. Added the IK
+        chain objects, setup some constants and fix the motion at a specific frame so that the 
+        whole skeleton will not be looping animation and then can be used to better demonstrate 
+        the IK mechanism.<br><br>
+
+</ul>
+
+<p>
+
+The implementation is not done. There are still a lot more that can/should be done. However I did spend
+some time making the structure of the code as extendable as possible so that once I get back it can be
+easily picked up.
+
+<br><br>
+<hr>
+
+<!--Observations-->
+
+<b><font size=+1>Observations</font></b>
+
+<p>
+
+Except for the difference in how complicated it is to implement the two methods (CCD is much more straight-forward 
+than the case for Jacobian), and the sad face that there is still mistakes in the implementation of CCD (it seems
+to be working properly for legs, but not on the arms, while I really call the same solver function on them), I did
+notice an interesting behavior of CCD: at the point of changing the increment direction of the target (e.g., after
+moving the target up for several steps, move it down), the movement of the bone will continue in its original direction
+for some more steps before reversing.<br>
+I am not sure, however, if this is actually the characteristics of CCD or just another mistake I made in the implementation...
+
+</p>
+<br><br>
+<hr>
+
+
+<!--Future Work-->
+
+
+<b><font size=+1>Future Work</font></b>
+
+<p>
+
+Although somewhat complicated, this is a fun assignment. It suggested a nice motivation to figure out what is takes
+to form a 3D humanoid skeleton that can be manipulatd and animated.<br>
+A lot of things can and should be done still, including a working Jacobian, a better control interface, and probably
+a more generic IK system that can be applied to other types or other formats of skeletons. It might also be interesting
+if specifying each joint an extra value representing their priority level when performing some motion. Doing this
+might give us a more natural-looking motion of the IK.<br> 
+
+</p>
+
+<br>
+
+
+<!--Footer-->
+
+<hr>
+
+<center>
+  
+Last Modified:  03/13/11
+
+</center>
+
+
+
+</body>
+
+
+
+</html>

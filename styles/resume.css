@@ -1,0 +1,35 @@
+p.content
+{
+padding:0 0 0 3em;
+}
+
+p.date
+{
+float:right;
+}
+
+li.skilltype
+{
+display:block;
+width:7em;
+height:1.4em;
+float:left;
+}
+
+li.skillitem
+{
+display:block;
+width:auto;
+height:1.4em;
+clear:right;
+}
+
+#skillset
+{
+list-style-type:none;
+margin:0;
+padding:0 0 0 3em;
+font-size:0.9em;
+clear:right;
+}
+

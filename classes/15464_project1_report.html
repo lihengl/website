@@ -1,0 +1,310 @@
+<html>
+
+<head>
+
+   <title>[lihengl] 15-464 Technical Animation 2011 Assignment 1 Report</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000" lang="EN-US" style="tab-interval:.5in">
+
+<!--Header-->
+
+<center>
+
+<b><font size=+2>Assignment 1:  Motion Editing</font></b><br>
+
+Due Date: Monday, February 7, 2011, 11:59pm<br>
+
+Submission Date:  Tuesday, February 8, 2011<br><br>
+
+**ONE LATE DAY TAKEN**<br><br>
+
+Student Name: Li-Heng Liang<br>
+
+Andrew Id: lihengl
+
+</center>
+
+
+<!--Overview-->
+
+<hr>
+
+<b><font size=+1>Overview:</font></b>
+
+<p>
+
+In this assignment we were asked to edit motion data with two approaches: 
+both writing a program and using Autodesk Maya software. The input we got
+was two walking animations that can either be manipulated and viewed with
+a starter code base or Maya.
+
+</p>
+
+<p>
+
+My goal is to make the walking animation looks different, as if giving the
+character more emotions since the original walk was a fairly plain one.
+Although I achieved something with the Maya approach, the programming approach
+was not as successful. Details for both approaches, as well as the observations
+I got throughout the process is described below.
+
+</p>
+<br>
+
+
+<!--Using Maya-->
+
+<hr>
+
+<b><font size=+1>Using Maya:</font></b>
+
+<p>
+
+The software I used for this assignment is Autodesk Maya 2011, running on a 
+Windows Vista Business 64-bit machine. 
+
+</p>
+
+<p><b>1. Result:</b></p>
+
+<p>
+
+Here is the result that I put onto the internet. I think the result talks more by itself compare
+with words, so I decided to show the video first to whoever reading this.
+
+</p>
+<br>
+
+<iframe src="http://player.vimeo.com/video/19675406?portrait=0&amp;loop=1" width="440" height="300" frameborder="0"></iframe>
+
+<p>
+<br>
+</p>
+
+<p><b>2. Methods:</b></p>
+
+<p>
+
+Below is a list of what I modifications I made to the original motion data in order 
+to achieve each different walk styles.
+
+<ul>
+
+	<li><b>Robotic:</b><br>
+	1. Rotate forarms to align with upperarms<br>
+	2. Scale down oscillation angles of the forarms to almost zero<br>
+	3. Scale up z(up) translation of the feet IKs<br>
+	4. Rotate lowerback backwards a bit<br>
+	5. Rotate neck backwards a bit<br><br>
+
+	<li><b>Determined:</b><br>
+	1. Rotate forwarms forward a bit<br>
+	2. Translate feet IKs backward a bit<br>
+	3. Rotate lowerback forward a bit (both 2. and 3. were to lean the character forward)<br>
+	4. Rotate neck backward a bit to make the character still looking forward<br><br>
+
+	<li><b>Relaxed:</b><br>
+	1. Rotate lowerback backward<br>
+	2. Scale up the oscillation angles of both arms<br><br>
+	
+	<li><b>Defeated:</b><br>
+	1. Rotate lowerback forward for a fair amount of degree<br>
+	2. Scale down z(up) translation of feet IKs<br><br>
+	
+	<li><b>Fearless:</b><br>
+	1. Move x(forward) translation forward so that the feet goes a bit futher than the whole body<br>
+	2. Rotate backarms backward a bit<br>
+	3. Rotate lowerback backward a bit<br>
+	4. Rotate upperback forward a bit<br>
+	5. Scale down the oscillation angles of both arms<br><br>
+
+	<li><b>Not-So-Manly:</b><br>
+	1. Rotate arms to the shape as seen in the video (could not explain this better...)<br>
+	2. Rotate legs toward the center of the body<br>
+	3. Scale down z(up) translation of the feet IKs<br>
+	4. Scale up the oscillation angles of lowerback<br>
+	5. Scale up the oscillation angles of neck about x(forward) axis<br><br>
+
+	<li><b>Sneaky:</b><br>
+	1. Move z(up) translation of root downward with a fair amount of distance<br>
+	2. Rotate lowerback forward with a fair amount of degree<br>
+	3. Rotate neck backward until the character is looking forward again<br>
+	4. Rotate forearms to align with backarms<br>
+	5. Rotate backarms away from the center of the body<br>
+	6. Scale up the oscillation angles of lowerback<br>
+	7. Scale down the oscillation angles of backarms<br>
+	8. Scale down z(up) translation of the feet IKs<br><br>
+
+	<li><b>Joyful:</b><br>
+	1. Scale up the oscillation distance of z(up) translation of root<br>
+	2. Scale up z(up) translation distance of the feet IKs<br>
+	3. Rotate lowerback backward a bit<br>
+	4. Rotate neck backward for a fair amount of degree<br>
+	5. Rotate forearms until they are in right angles with backarms<br>
+	6. Scale up the oscillation angles of backarms with a fair amount of degree<br><br> 
+
+</ul>
+
+<p><b>3. Observations:</b></p>
+
+<p>
+
+After playing around with the Maya software which I almost had no prior experience with,
+I figured out that for the purpose of editing, not starting a new animation from scratch,
+using the Graph Editor in Maya is a good way to go. I have only used the Graph Editor for
+this assignment. There are probably a lot more tools that Maya has to provide, but given
+the time contraint, it is the tool of my choice. Several observations I found is listed
+below:
+
+
+<ul>
+
+	<li><b>It is really easy to break the animation by modifying timing.</b><br>
+	Every attributes of the bones in the skeleton, including translations, rotations, and scale
+	are all values over time. As I was trying to see what moving around the graph will do,
+	I discovered that whenever I tried to modify the timing, it is very easy to make the
+	animation "look wrong". For example, one thing I was trying to do is to make the character
+	walk more "powerful", and I was hoping to achieve it by having both the feet and the arms
+	reach their local destination (or, local peak value on the graph) faster. The way I tried
+	was to steepen the slope of the sin-like graph of the rotation attibutes while maintain
+	their period. However, the result by simply doing is looked weird, and I belive it has to
+	do with that not only the arm and the feet, but also the torso the root, or basically the
+	whole body needs to adjust to that speed change in order for the motion to look natural or
+	believable. If time permit I might be able to conquer this, but there was no easy way to
+	do it effectively during my experiment.<br><br>	
+
+	<li><b>The spine bones matter a lot</b><br>
+	The very first effective change that I made was the overall angle of the lowerback bone.
+	The angle of lowerback bone determines the leaning angle of the body, and this determines
+	a large part of the style of our character. Generally leaning forward makes the character
+	looks more focused, while leaning backward makes the character looks more relaxed or absent-
+	minded. However, if leaning forward to a large amount of degree, it will turn into quite a
+	nother result as the "defeated" one shown in the video.<br><br>
+
+	<li><b>Oscillation angles also matters a lot</b><br>
+	Walking is a cycling motion. Except for the x(forward)-translation in this assignment, which
+	moves the character forward, everything is osillating in some waveform if viewed from the
+	Graph Editor. For almost every motions the amplitude of the waveform is something I would
+	definitely play around with. Not only they changes the style/feel of the motions a lot, but
+	also I found them relatively safe to play around with. That means, as long as you do not
+	modify them too far, the resulting animtation would remain in a decent quality state.<br><br>
+		
+
+</ul>
+
+</p>
+<br>
+
+
+<!--Using the Code Base-->
+
+<hr>
+
+<b><font size=+1>Using the Code Base</font></b>
+
+<p>
+
+I have to say here at the beginning of the section that I failed to achieve what I was trying to do
+with the programming approach for this assignment. Either it was because I spent to much time playing
+with Maya, or it took me too long to realize how to do motion editing with programs. After figured out
+how to setup the starter code on my working machine and read (some part) of the provided code, I
+decided to write my own parser to edit the motion data. Within the timing contraint I have only reached
+the point where I got the data loaded into memory, but could not made the next step forward of applying
+different editing functions to it.
+
+</p>
+
+<p>
+
+Source code of my unfinished program can be downloaded 
+<a href="http://www.andrew.cmu.edu/user/lihengl/15464/lihengl_amc_editor.zip">here</a>
+, although it may not mean anything at this
+point since it is really not something that works. I am planning to keep working on it since the next
+assignment will be based on the same framework and data format, and hopefully by that time I would have
+a functional motion editor for the motion capture data at my disposal.
+
+</p>
+
+<p><b>1. Result:</b></p>
+
+<p>
+
+Here is the result of my program-edited motion data. Really, there is not much to say about it since the
+difference from the original data can barely be seen.
+
+</p>
+
+<br>
+
+<iframe src="http://player.vimeo.com/video/19734075?portrait=0&amp;loop=1" width="440" height="300" frameborder="0">
+</iframe>
+
+<br>
+
+<p><b>2. The Original Idea:</b></p>
+
+<p>
+
+If I were to finish the editing program in time, the next step was going to be applying various
+functions to the motions. Things that I would like to try was:
+
+<ul>
+
+	<li>Scaling<br>
+	<li>Offset<br>
+	<li>Non-linear Attenuation<br>
+
+</ul>
+
+<p>
+
+But unfortunately I was unable to achieve it. Would strive for a better job for next assignment.
+
+</p>
+<br>
+
+
+<!--Comparison Between the Two Approaches-->
+
+<hr>
+
+<b><font size=+1>Comparison Between the Two Approaches</font></b>
+
+<p>
+
+For experience I have more on the programming side than to the 3D software side. However in this assignment I had quite amount
+of fun playing Maya, but not as much trying to get my code to work. Maya is such a big software that seems to have billions of
+features in it. What I was trying to achieve with code was probably something similar to the Graph Editor in Maya, except for the
+fancy interface.
+
+</p>
+
+<p>
+
+This being said, I believe there is a lot more we can do with motion editing using computer programs. After all, there is actually
+very little Maya can do if trying to build some real-time applications. Reading the file format of motion capture data gave me
+an understanding of how human skeleton is can be modeled, and also how animation is really the change of values over time.
+
+</p>
+<br>
+
+
+<!--Footer-->
+
+<hr>
+
+<center>
+  
+Last Modified:  02/09/11
+
+</center>
+
+
+
+</body>
+
+
+
+</html>

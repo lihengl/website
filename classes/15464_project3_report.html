@@ -1,0 +1,212 @@
+<html>
+
+<head>
+
+   <title>[lihengl] 15-464 Technical Animation 2011 Assignment 3 Report</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000" lang="EN-US" style="tab-interval:.5in">
+
+<!--Header-->
+
+<center>
+
+<b><font size=+2>Assignment 3:  Cloth Simulation</font></b><br>
+
+Due Date: Monday, March 28, 2011, 11:59pm<br>
+
+Submission Date:  Monday, March 28, 2011<br><br>
+
+Student Name: Li-Heng Liang<br>
+
+Andrew Id: lihengl
+
+</center>
+
+
+<!--Overview-->
+
+<hr>
+
+<b><font size=+1>Overview:</font></b>
+
+<p>
+
+In this assignment we were asked to implement a cloth simulation with simple
+spring-force model and Forward Euler Integration method. A starter code base
+with lighting, camera and a chessboard floor with shadow and reflection rendering
+is provided in C++ and OpenGL.
+
+</p>
+
+<p>
+
+My goal of this assignment is to explore the basic cloth simulation method,
+the characteristics of the spring-force model and the Forward Eular Integration,
+as well as setup the color and lighting of the scene to get an appealing
+visual output.
+
+</p>
+<br>
+
+
+<!--Result-->
+
+<hr>
+
+<b><font size=+1>Result:</font></b>
+
+<p>
+
+Below is a real-time screen recording of my implementation of the cloth simulation
+program. The slowness of the movement is due to the limitation of Forward Euler
+Integration. If a faster movement were specified, the simulation will become unstable
+and the cloth will break apart in a matter of few seconds. The rendering is done
+with default OpenGL setup.
+
+<br>
+
+( I uploaded the video in a rush and forgot to remove the sound part of it, so it
+has an annoying backround sound picked up by my computer as I was recording the
+video. You can turn off the sound volume with the toolbar on the video. Sorry. )
+
+</p>
+
+<iframe src="http://player.vimeo.com/video/21628477?portrait=0&amp;autoplay=1&amp;loop=1" width="440" height="341" frameborder="0"></iframe>
+
+<p>
+
+During the middle part of the video I turned on the rendering for spring forces as lines.
+It shows the structure of the spring-force model with stretch, damp, and shear springs.
+
+</p>
+
+<p><br></p>
+
+<hr>
+
+<!--Implementation Notes-->
+
+<b><font size=+1>Implementation Notes:</font></b>
+
+<p>
+
+The program was mainly developed on my laptop under Mac OSX 10.6 with Xcode IDE and GCC 4.2
+as its compiler. It was also tested to compile and run on the CMU GHC cluster machines.
+ 
+</p>
+
+<p>
+
+There is not much to talk about in the implementation of this assignment. I removed all the unrelated code
+in the starter, and coded the spring force obejct, gravity force object, particle object and
+the cloth object which is a composition of the previous three object types. <br>
+<br>
+There are several parameters that I left tunable, these are:
+<br>
+1. Resolution of the cloth  ( it is 20 by 20 in the video shown above ) <br>
+2. Mass of the cloth ( it is set so that every particle has a mass of 1.0 in the video shown above ) <br>
+3. Constant Ks of the springs ( it is set to 650 ) <br>
+4. Constant Kd of the springs ( it is set to 150 ) <br>
+<br>
+I have set the gravity constant G to 9.80 and had intentionally made it unchanged.<br>
+<br>
+At the start of the simulation, the cloth is put horizontal in the air. I explicitly pinned two particles
+at the corner to have fixed position, so as to make the cloth swing downward to observe its behavior.<br>
+<br>
+The rendering is done with OpenGL fixed-funtionality pipeline primitive commands ( e.g. glBegin()/glEnd() ).
+In order to get a better visual output, I played around a little with the color of the cloth and the lightings.
+In addition to the one only light enabled by the starter code base, I put a secondary directional light on
+the floor, shooting upward hoping to simulate a reflected illumination. As a result, the cloth will not
+turn completely darken when facing downward during its swing.
+<br>
+</p>
+
+<hr>
+
+<!--Using Maya nCloth System-->
+
+<b><font size=+1>Using Maya nCloth System</font></b>
+
+<p>
+
+Autodesk Maya has a cloth simulation system called nCloth. Below is a demo video I made with
+the system, using a plane of resolution 32 by 32 with simple texture. Every other attributes
+were default by Maya 2011.
+
+</p>
+
+<iframe src="http://player.vimeo.com/video/21614055?portrait=0&amp;autoplay=1&amp;loop=1" width="440" height="330" frameborder="0"></iframe>
+
+<br><br>
+<hr>
+
+<!--Observations-->
+
+<b><font size=+1>Observations</font></b>
+
+<p>
+
+The biggest surprise while implementing this simulation program was the moment Forward Euler gave an unstable
+result. The piece of cloth will just literally break apart in a matter of few seconds after the simulation
+started.<br>
+<br>
+Haveing checked that the implementation itself was correct, I went into tuning the parameters trying to get
+a nice-looking and stable result. The constraints were discovered that we cannot make the mass of the cloth too
+small or it will fall apart, and we cannot make the spring constants too large or it will also fall apart.<br>
+<br>
+The reason for making the mass small and the spring constants large is that, while using 9.80 as the absolute
+gravity constant, the cloth will appear to be very "heavy" to an extent that it no will no longer look like a
+piece of cloth, but something more like a liquidfied material or something. The straight forward approach to
+solve this is to make the cloth lighter or the springs "stronger", which means a smaller value for the mass of
+the cloth and bigger values for both the spring constants. Having found that tuning these parameters in these
+direction will cause a fall apart eventually, I set them to the point where the simulation remains stable, and
+the visual was believable.<br>
+<br>
+Another thing I realized during the implementation was that for the Forward Eular integration step, instead of
+passing the actual time difference between current and last update, it has to be a fixed and reasonably small
+value. This means if the simulator program is not running at constant speed, the simulated result will not
+be precise.<br>
+<br>
+Compared with Maya nCloth, not only can Maya do this in apparently real-time, but also it captures a phenomenom
+when the cloth swings to the straight position, there is a "bouncing wave" generated from the tail and travels
+upwards. This seems to be something the spring-force model cannot capture, thus made me curious what alternative
+model for cloth does Maya use.<br>
+
+</p>
+
+<hr>
+
+<!--Future Work-->
+
+<b><font size=+1>Future Work</font></b>
+
+<p>
+
+There are several things that I would like to explore:<br>
+<br>
+1. Second/Fouth order Runge-Kutta method: this will enable a faster, closer to real-time simulation.<br>
+2. Collision: start with simple geometry such as sphere or cube, then to self-collision.<br>
+3. Other forces such as wind.<br>
+<br>
+Above are ranked with their degree of improvement to the program.
+
+</p>
+
+<br>
+
+
+<!--Footer-->
+
+<hr>
+
+<center>
+  
+Last Modified:  03/29/11
+
+</center>
+
+</body>
+
+</html>
